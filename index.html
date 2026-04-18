@@ -1614,21 +1614,26 @@
           </a>
         </div>
       </div>
-      <form class="contact-form fade-in" onsubmit="handleSubmit(event)" novalidate>
+      <form class="contact-form fade-in" id="contact-form" novalidate>
+        <input type="hidden" name="_subject" value="New Portfolio Message">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none">
         <div class="form-group">
           <label class="form-label" for="name">Your Name</label>
-          <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="email">Email Address</label>
-          <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="message">Message</label>
-          <textarea id="message" class="form-control" rows="5" placeholder="Tell me about your project..." required></textarea>
+          <textarea id="message" name="message" class="form-control" rows="5" placeholder="Tell me about your project..." required></textarea>
         </div>
         <button type="submit" class="btn-submit magnetic" id="submit-btn">Send Message →</button>
         <p class="form-success" id="form-success">Message sent! I'll get back to you soon.</p>
+        <p class="form-error" id="form-error" style="display:none;color:var(--accent);font-size:0.82rem;margin-top:0.5rem;">Something went wrong. Please try again.</p>
       </form>
     </div>
   </section>
@@ -1866,11 +1871,13 @@
       rafId = requestAnimationFrame(updateParallax);
     }, { passive: true });
 
-    /* ── CONTACT FORM ── */
-    function handleSubmit(e) {
+    /* ── CONTACT FORM — FormSubmit.co ── */
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
       const success = document.getElementById('form-success');
+      const error = document.getElementById('form-error');
 
       // Simple validation
       const name = document.getElementById('name');
@@ -1890,18 +1897,38 @@
       btn.textContent = 'Sending...';
       btn.style.opacity = '0.7';
       btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Sent ✓';
+      error.style.display = 'none';
+
+      const formData = new FormData(contactForm);
+
+      fetch('https://formsubmit.co/ajax/ashwinsrichandra2008@gmail.com', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          btn.textContent = 'Sent ✓';
+          btn.style.opacity = '1';
+          success.style.display = 'block';
+          contactForm.reset();
+          setTimeout(() => {
+            btn.textContent = 'Send Message →';
+            btn.disabled = false;
+            success.style.display = 'none';
+          }, 4000);
+        } else {
+          throw new Error('Submit failed');
+        }
+      })
+      .catch(() => {
+        btn.textContent = 'Send Message →';
         btn.style.opacity = '1';
-        success.style.display = 'block';
-        e.target.reset();
-        setTimeout(() => {
-          btn.textContent = 'Send Message →';
-          btn.disabled = false;
-          success.style.display = 'none';
-        }, 4000);
-      }, 1200);
-    }
+        btn.disabled = false;
+        error.style.display = 'block';
+        setTimeout(() => { error.style.display = 'none'; }, 4000);
+      });
+    });
 
     /* ── SMOOTH SECTION REVEAL ON SCROLL (opacity) ── */
     const sectionEls = document.querySelectorAll('section');
