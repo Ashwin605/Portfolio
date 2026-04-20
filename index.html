@@ -2068,7 +2068,8 @@
               class="var">motion</span> } <span class="kw">from</span> <span class="str">'framer'</span></div>
           <div class="code-line"><span class="ln">3</span></div>
           <div class="code-line"><span class="ln">4</span><span class="kw">const</span> <span class="fn">Hero</span>
-            <span class="op">=</span> () <span class="op">=&gt;</span> {</div>
+            <span class="op">=</span> () <span class="op">=&gt;</span> {
+          </div>
           <div class="code-line"><span class="ln">5</span>&nbsp;&nbsp;<span class="kw">const</span> [<span
               class="var">ready</span>] <span class="op">=</span> <span class="fn">useState</span>(<span
               class="kw">true</span>)</div>
@@ -2393,6 +2394,74 @@
   </button>
 
   <script>
+    /* ── ADVANCED HAPTIC FEEDBACK SYSTEM ── */
+    const HapticEngine = {
+      supported: () => 'vibrate' in navigator,
+
+      // Core vibration patterns
+      patterns: {
+        light: [10],
+        medium: [20],
+        strong: [40],
+        tap: [15, 10, 15],
+        double: [20, 15, 20],
+        triple: [15, 10, 15, 10, 15],
+        pulse: [30, 20, 30, 20, 30],
+        success: [20, 15, 40],
+        error: [50, 30, 50],
+        warning: [40, 20, 40, 20, 40],
+        pop: [25, 30],
+        smooth: [50, 10, 50],
+        navigate: [15, 10, 15, 10, 20],
+        magic: [10, 5, 10, 5, 20, 5, 10],
+        intensity: (intensity) => {
+          // 0-1 scale
+          return [Math.round(intensity * 100)];
+        }
+      },
+
+      // Vibrate with pattern
+      vibrate: function (pattern) {
+        if (this.supported() && pattern) {
+          try {
+            navigator.vibrate(pattern);
+          } catch (e) {
+            console.debug('Haptic feedback not available');
+          }
+        }
+      },
+
+      // Stop vibration
+      stop: function () {
+        if (this.supported()) {
+          navigator.vibrate(0);
+        }
+      },
+
+      // Advanced patterns with callbacks
+      sequence: async function (patterns, callback) {
+        for (const pattern of patterns) {
+          this.vibrate(pattern);
+          await new Promise(resolve => setTimeout(resolve, Array.isArray(pattern) ? pattern.reduce((a, b) => a + b, 0) + 50 : pattern + 50));
+        }
+        if (callback) callback();
+      },
+
+      // Haptic on element interaction
+      onElementInteract: function (element, type = 'tap') {
+        const hapticPatterns = {
+          tap: 'tap',
+          click: 'pop',
+          hover: 'light',
+          magnetic: 'magic',
+          error: 'error',
+          success: 'success',
+          navigate: 'navigate'
+        };
+        this.vibrate(this.patterns[hapticPatterns[type] || 'tap']);
+      }
+    };
+
     /* ── PRELOADER ── */
     window.addEventListener('load', () => {
       setTimeout(() => {
@@ -2410,13 +2479,22 @@
       progressBar.style.width = progress + '%';
     }
 
-    /* ── SCROLL TO TOP BUTTON + RING ── */
+    /* ── SCROLL TO TOP BUTTON + RING WITH HAPTICS ── */
     const scrollTopBtn = document.getElementById('scroll-top');
     const scrollRingCircle = document.getElementById('scroll-ring-circle');
     const ringCircumference = 2 * Math.PI * 28; // r=28
 
     scrollTopBtn.addEventListener('click', () => {
+      HapticEngine.vibrate(HapticEngine.patterns.navigate);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    scrollTopBtn.addEventListener('mouseenter', () => {
+      HapticEngine.vibrate(HapticEngine.patterns.light);
+    });
+
+    scrollTopBtn.addEventListener('touchstart', () => {
+      HapticEngine.vibrate(HapticEngine.patterns.tap);
     });
 
     function updateScrollTop() {
@@ -2428,7 +2506,16 @@
       scrollRingCircle.style.strokeDashoffset = ringCircumference - (progress * ringCircumference);
     }
 
-    /* ── NAV — Scroll spy + hide/show on scroll ── */
+    /* ── SCROLL SPY & NAV HAPTICS ── */
+    // Add haptic feedback to nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.navigate);
+      });
+      link.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
+      });
+    });
     const nav = document.getElementById('nav');
     let lastScrollY = 0;
     let ticking = false;
@@ -2473,7 +2560,7 @@
       }
     }, { passive: true });
 
-    /* ── MOBILE NAV TOGGLE ── */
+    /* ── MOBILE NAV TOGGLE WITH HAPTICS ── */
     const navToggle = document.querySelector('.nav-toggle');
     const navOverlay = document.getElementById('nav-overlay');
 
@@ -2483,6 +2570,7 @@
       navToggle.setAttribute('aria-expanded', isOpen);
       navOverlay.setAttribute('aria-hidden', !isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
+      HapticEngine.vibrate(isOpen ? HapticEngine.patterns.magic : HapticEngine.patterns.tap);
     });
 
     navOverlay.querySelectorAll('a').forEach(link => {
@@ -2492,6 +2580,10 @@
         navToggle.setAttribute('aria-expanded', 'false');
         navOverlay.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        HapticEngine.vibrate(HapticEngine.patterns.navigate);
+      });
+      link.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
       });
     });
 
@@ -2541,11 +2633,14 @@
 
     document.querySelectorAll('.fade-in, .hero-reveal, section, .section-label').forEach(el => observer.observe(el));
 
-    /* ── COUNTER ANIMATION ── */
+    /* ── COUNTER ANIMATION WITH HAPTICS ── */
     let countersStarted = false;
     function startCounters() {
       if (countersStarted) return;
       countersStarted = true;
+
+      // Haptic for counter start
+      HapticEngine.vibrate(HapticEngine.patterns.magic);
 
       const counters = document.querySelectorAll('.fact-num');
       counters.forEach(counter => {
@@ -2569,35 +2664,56 @@
             requestAnimationFrame(updateCount);
           } else {
             counter.innerText = target + (target === 5 ? '+' : target === 100 ? '+' : '');
+            // Haptic pulse when counter finishes
+            HapticEngine.vibrate(HapticEngine.patterns.pop);
           }
         }
         requestAnimationFrame(updateCount);
       });
     }
 
-    /* ── MAGNETIC BUTTONS ── */
-    document.querySelectorAll('.magnetic').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    // Add fact items haptic feedback
+    document.querySelectorAll('.fact-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
       });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = `translate(0px, 0px)`;
+      item.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.tap);
       });
     });
 
-    /* ── 3D TILT ON PROJECT CARDS ── */
+    // Add social links haptic feedback
+    document.querySelectorAll('.social-link').forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
+      });
+      link.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.navigate);
+      });
+    });
+
+    /* ── 3D TILT ON PROJECT CARDS — (ALREADY HANDLED ABOVE) ── */
     document.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
         card.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) scale(1.01)`;
+
+        // Intensity-based haptic feedback
+        const distance = Math.sqrt(x * x + y * y);
+        const intensity = Math.min(distance * 2, 1);
+        HapticEngine.vibrate(HapticEngine.patterns.intensity(intensity * 0.3));
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale(1)';
+        HapticEngine.stop();
+      });
+      card.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.pop);
+      });
+      card.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.navigate);
       });
     });
 
@@ -2613,8 +2729,23 @@
       rafId = requestAnimationFrame(updateParallax);
     }, { passive: true });
 
-    /* ── CONTACT FORM — FormSubmit.co ── */
+    /* ── CONTACT FORM — FormSubmit.co WITH HAPTICS ── */
     const contactForm = document.getElementById('contact-form');
+    const formInputs = document.querySelectorAll('.form-control');
+
+    // Add haptic feedback on form input focus
+    formInputs.forEach(input => {
+      input.addEventListener('focus', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
+      });
+      input.addEventListener('input', () => {
+        // Light haptic on typing (throttled)
+        if (input.value.length % 5 === 0) {
+          HapticEngine.vibrate(HapticEngine.patterns.light);
+        }
+      });
+    });
+
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
       const btn = document.getElementById('submit-btn');
@@ -2630,11 +2761,16 @@
         [name, email, message].forEach(el => {
           if (!el.value.trim()) {
             el.style.borderColor = 'var(--accent)';
+            // Error haptic pattern
+            HapticEngine.vibrate(HapticEngine.patterns.error);
             el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
           }
         });
         return;
       }
+
+      // Submit haptic
+      HapticEngine.vibrate(HapticEngine.patterns.smooth);
 
       btn.textContent = 'Sending...';
       btn.style.opacity = '0.7';
@@ -2650,6 +2786,13 @@
         .then(res => res.json())
         .then(data => {
           if (data.success) {
+            // Success haptic sequence
+            HapticEngine.sequence([
+              HapticEngine.patterns.pop,
+              HapticEngine.patterns.success,
+              HapticEngine.patterns.pop
+            ]);
+
             btn.textContent = 'Sent ✓';
             btn.style.opacity = '1';
             success.style.display = 'block';
@@ -2664,6 +2807,12 @@
           }
         })
         .catch(() => {
+          // Error haptic
+          HapticEngine.sequence([
+            HapticEngine.patterns.error,
+            HapticEngine.patterns.warning
+          ]);
+
           btn.textContent = 'Send Message →';
           btn.style.opacity = '1';
           btn.disabled = false;
@@ -2672,13 +2821,16 @@
         });
     });
 
-    /* ── SMOOTH SECTION REVEAL ON SCROLL (opacity) ── */
+    /* ── SMOOTH SECTION REVEAL ON SCROLL WITH HAPTICS ── */
     const sectionEls = document.querySelectorAll('section');
     const sectionObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
+
+          // Haptic pulse when section enters viewport
+          HapticEngine.vibrate(HapticEngine.patterns.light);
         }
       });
     }, { threshold: 0.05 });
