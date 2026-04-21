@@ -1225,6 +1225,107 @@
       transform: scale(1.8);
     }
 
+    /* ── CERTIFICATIONS ── */
+    .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin: -1px -1px 0 0;
+    }
+
+    .cert-card {
+      padding: 2rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      transition: background var(--transition-base), transform var(--transition-fast), box-shadow var(--transition-base), border-color var(--transition-base);
+      position: relative;
+      overflow: hidden;
+      will-change: transform;
+    }
+
+    .cert-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .cert-card:hover {
+      background: var(--surface);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      border-color: var(--accent);
+      z-index: 2;
+    }
+
+    .cert-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .cert-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cert-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      flex: 1;
+    }
+
+    .cert-badge {
+      display: inline-block;
+      padding: 0.35rem 0.65rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: background var(--transition-fast);
+      border-radius: 2px;
+    }
+
+    .cert-badge.special {
+      background: #d97706;
+    }
+
+    .cert-badge.verified {
+      background: #059669;
+    }
+
+    .cert-card:hover .cert-badge {
+      transform: translateY(-2px);
+    }
+
+    .cert-org {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    .cert-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+    }
+
     /* ── CONTACT ── */
     .contact-grid {
       display: grid;
@@ -2030,6 +2131,7 @@
       <li><a href="#about" class="magnetic" data-section="about">About</a></li>
       <li><a href="#projects" class="magnetic" data-section="projects">Projects</a></li>
       <li><a href="#skills" class="magnetic" data-section="skills">Skills</a></li>
+      <li><a href="#certifications" class="magnetic" data-section="certifications">Certifications</a></li>
       <li><a href="#contact" class="magnetic" data-section="contact">Contact</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -2044,6 +2146,7 @@
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
     <a href="#contact">Contact</a>
   </div>
 
@@ -2325,9 +2428,106 @@
     </div>
   </section>
 
+  <!-- CERTIFICATIONS & ACHIEVEMENTS -->
+  <section id="certifications">
+    <div class="section-number" aria-hidden="true">04</div>
+    <p class="section-label"><span>Certifications & Awards</span></p>
+    <div class="certifications-grid">
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">Code Sangram Hackathon</h3>
+          <span class="cert-badge">1st Place</span>
+        </div>
+        <p class="cert-org">Alliance University</p>
+        <p class="cert-date">February 2026</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">Code Sangram – UI/UX Design</h3>
+          <span class="cert-badge special">Special Category</span>
+        </div>
+        <p class="cert-org">Alliance University</p>
+        <p class="cert-date">February 2026</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">Vibe Hack 2.0</h3>
+          <span class="cert-badge">Top 5000</span>
+        </div>
+        <p class="cert-org">Hack With India · BuildWithIndia</p>
+        <p class="cert-date">Out of 25,000 participating teams</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">E-Summit '26 – Idea Sprint</h3>
+          <span class="cert-badge">Innovation</span>
+        </div>
+        <p class="cert-org">National Innovation Challenge · IIT Tirupati</p>
+        <p class="cert-date">January 2026</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">Hackwise 2026</h3>
+          <span class="cert-badge">Hackathon</span>
+        </div>
+        <p class="cert-org">IRIS 2026 · IIM Indore's Flagship Fest</p>
+        <p class="cert-date">2026</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">AI Tools Workshop</h3>
+          <span class="cert-badge verified">Verified</span>
+        </div>
+        <p class="cert-org">Be10x</p>
+        <p class="cert-date">July 13, 2025</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">Digital Productivity with AI</h3>
+          <span class="cert-badge">100% Score</span>
+        </div>
+        <p class="cert-org">YuWaah · Passport to Earning</p>
+        <p class="cert-date">November 10, 2025</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">Professional Networking for Career Growth</h3>
+          <span class="cert-badge">Completed</span>
+        </div>
+        <p class="cert-org">HP LIFE Foundation</p>
+        <p class="cert-date">February 6, 2026</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">The DevForge – Hackathon</h3>
+          <span class="cert-badge">Hackathon</span>
+        </div>
+        <p class="cert-org">Yugaantar '25 · Scaler School of Technology</p>
+        <p class="cert-date">2025</p>
+      </div>
+
+      <div class="cert-card fade-in">
+        <div class="cert-header">
+          <h3 class="cert-title">Bitathon 2026</h3>
+          <span class="cert-badge">Hackathon</span>
+        </div>
+        <p class="cert-org">Goa Institute of Management (GIM)</p>
+        <p class="cert-date">2026</p>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
-    <div class="section-number" aria-hidden="true">04</div>
+    <div class="section-number" aria-hidden="true">05</div>
     <p class="section-label"><span>Contact</span></p>
     <div class="contact-grid">
       <div class="fade-in">
@@ -2394,110 +2594,180 @@
   </button>
 
   <script>
-    /* ── ADVANCED HAPTIC FEEDBACK SYSTEM ── */
-    const HapticEngine = {
-      supported: () => 'vibrate' in navigator,
+    /* ── ADVANCED HAPTIC FEEDBACK SYSTEM v2.0 ── */
+    const AdvancedHapticEngine = {
+      // Settings and configuration
+      config: {
+        enabled: true,
+        intensity: 1.0, // 0-1 scale, user adjustable
+        smoothing: true,
+        contextAware: true,
+        throttleMs: 50,
+        reduceMotion: window.matchMedia('(prefers-reduce-motion: reduce)').matches,
+      },
 
-      // Core vibration patterns - Enhanced with rhythmic and smooth variants
+      // Track interaction context
+      context: {
+        isScrolling: false,
+        isMobile: window.innerWidth < 768,
+        currentSection: null,
+        velocityY: 0,
+        lastScrollTime: 0,
+        interactionDepth: 0,
+      },
+
+      // Advanced vibration patterns library
       patterns: {
-        // Smooth patterns (longer, flowing)
+        // Micro-interactions
+        tap: [12],
+        click: [18, 12, 18],
+        hover: [10],
         light: [15],
-        medium: [30],
-        strong: [50],
-        smooth: [60, 15, 60],
-        silky: [40, 20, 40, 20, 40],
 
-        // Rhythmic patterns (musical, beat-based)
-        tap: [20, 15, 20],
-        beat: [25, 25, 25],
+        // Smooth flow patterns
+        silk: [45, 25, 45],
+        velvet: [50, 30, 50],
+        glide: [50, 30, 50, 30, 50],
+        breeze: [20, 25, 20, 25, 20],
+
+        // Rhythmic patterns
+        pulse: [40, 25, 40],
         heartbeat: [30, 20, 30, 200, 30, 20, 30],
-        rhythm: [15, 20, 15, 20, 15, 20, 15],
-        tempo: [30, 30, 30, 30, 30],
+        wave: [25, 30, 35, 30, 25],
+        rhythm: [20, 15, 20, 15, 20],
 
-        // Enhanced patterns
-        double: [30, 20, 30],
-        triple: [20, 15, 20, 15, 20],
-        pulse: [40, 25, 40, 25, 40, 25, 40],
+        // Navigation patterns
+        navigate: [25, 15, 25, 15, 35],
+        transition: [30, 20, 40],
+        reveal: [15, 20, 30, 20, 15],
 
-        // Smooth feedback
+        // Form feedback
+        focus: [30, 15, 30],
+        input: [15, 10, 15],
         success: [40, 20, 50, 20, 40],
         error: [60, 40, 60],
         warning: [50, 30, 50, 30, 50],
 
-        // Smooth interactions
-        pop: [35, 25],
-        click: [25, 20, 25],
-        navigate: [25, 15, 25, 15, 35],
-
-        // Rhythmic interactions
+        // Advanced patterns
         magic: [15, 10, 15, 10, 25, 10, 15, 10, 15],
-        flow: [20, 15, 25, 15, 30, 15, 25, 15, 20],
+        sparkle: [10, 15, 10, 15, 10, 15, 10],
+        shimmer: [20, 20, 30, 20, 20],
         bounce: [30, 40, 20, 40, 30],
-
-        // Ultra-smooth patterns
-        velvet: [50, 30, 50],
-        silk: [45, 25, 45, 25, 45],
-        drift: [35, 30, 35, 30, 35],
-        wave: [25, 30, 35, 30, 25],
-
-        // Rhythmic smooth combinations
+        flow: [20, 15, 25, 15, 30, 15, 25, 15, 20],
         dance: [20, 20, 20, 25, 20, 20, 20],
-        swing: [30, 20, 30, 40, 30, 20, 30],
         groove: [25, 15, 35, 15, 25],
 
-        // Floating patterns (very smooth)
-        float: [40, 40, 40],
-        glide: [50, 30, 50, 30, 50],
-        breathe: [35, 40, 35],
+        // Haptic narratives
+        crescendo: [20, 20, 30, 30, 40, 40, 50],
+        decrescendo: [50, 40, 40, 30, 30, 20, 20],
+        ascend: [20, 15, 25, 15, 30, 15, 35],
+        descend: [35, 15, 30, 15, 25, 15, 20],
 
-        // Intensity-based smooth pattern
-        intensity: (intensity) => {
-          const base = Math.round(intensity * 60);
-          return [base, Math.round(base * 0.5), base];
+        // Context-aware dynamic patterns
+        intensity: (val) => [Math.round(val * 60)],
+        scaled: (intensity, rhythm = 'smooth') => {
+          if (rhythm === 'smooth') return [Math.round(intensity * 45 + 15), Math.round(intensity * 20), Math.round(intensity * 45 + 15)];
+          if (rhythm === 'rhythmic') return [Math.round(intensity * 30 + 10), Math.round(intensity * 15), Math.round(intensity * 30 + 10), Math.round(intensity * 15), Math.round(intensity * 30 + 10)];
+          return [Math.round(intensity * 40 + 20)];
         },
 
-        // Smooth crescendo
-        crescendo: [20, 20, 30, 30, 40, 40, 50],
+        // Distance-based haptic
+        proximity: (distance, maxDistance) => {
+          const normalized = Math.max(0, Math.min(1, 1 - (distance / maxDistance)));
+          return [Math.round(normalized * 50 + 15), Math.round(normalized * 20), Math.round(normalized * 50 + 15)];
+        },
 
-        // Smooth decrescendo
-        decrescendo: [50, 40, 40, 30, 30, 20, 20]
+        // Scroll velocity patterns
+        momentum: (velocity) => {
+          const clamped = Math.min(Math.abs(velocity) / 1000, 1);
+          return [Math.round(clamped * 50 + 20), Math.round(clamped * 30), Math.round(clamped * 50 + 20)];
+        },
       },
 
-      // Vibrate with smooth easing
+      // Haptic state management
+      state: {
+        isVibrating: false,
+        lastVibrationTime: 0,
+        activePatterns: [],
+        queuedPatterns: [],
+      },
+
+      // Core vibration engine
       vibrate: function (pattern) {
-        if (this.supported() && pattern) {
-          try {
-            navigator.vibrate(pattern);
-          } catch (e) {
-            console.debug('Haptic feedback not available');
+        if (!this.shouldVibrate()) return false;
+
+        try {
+          if (typeof pattern === 'function') {
+            pattern = pattern();
           }
+
+          const scaledPattern = this.scalePattern(pattern);
+          navigator.vibrate(scaledPattern);
+          this.state.isVibrating = true;
+          this.state.lastVibrationTime = Date.now();
+          return true;
+        } catch (e) {
+          console.debug('Haptic unavailable:', e);
+          return false;
         }
       },
 
       // Stop vibration smoothly
       stop: function () {
-        if (this.supported()) {
+        try {
           navigator.vibrate(0);
+          this.state.isVibrating = false;
+          this.state.activePatterns = [];
+        } catch (e) {
+          console.debug('Haptic stop failed:', e);
         }
       },
 
-      // Advanced patterns with smooth callbacks and timing
-      sequence: async function (patterns, callback, smoothTransition = true) {
+      // Check if vibration should occur
+      shouldVibrate: function () {
+        return this.config.enabled &&
+          !this.config.reduceMotion &&
+          'vibrate' in navigator &&
+          (Date.now() - this.state.lastVibrationTime) > this.config.throttleMs;
+      },
+
+      // Scale pattern based on user intensity setting
+      scalePattern: function (pattern) {
+        if (!Array.isArray(pattern)) return pattern;
+        return pattern.map((v, i) => {
+          // Only scale vibration durations (even indices), not pause times
+          return i % 2 === 0 ? Math.round(v * this.config.intensity) : v;
+        });
+      },
+
+      // Advanced sequence with callbacks
+      sequence: async function (patterns, options = {}) {
+        const defaults = {
+          callback: null,
+          smoothTransition: true,
+          interrupt: false
+        };
+        const opts = { ...defaults, ...options };
+
         for (const pattern of patterns) {
+          if (opts.interrupt && !this.config.enabled) break;
+
           this.vibrate(pattern);
-          const duration = Array.isArray(pattern) ? pattern.reduce((a, b) => a + b, 0) : pattern;
-          const transitionTime = smoothTransition ? Math.round(duration * 0.3) : 0;
+          const duration = this.getPatternDuration(pattern);
+          const transitionTime = opts.smoothTransition ? Math.round(duration * 0.2) : 0;
+
           await new Promise(resolve => setTimeout(resolve, duration + transitionTime));
         }
-        if (callback) callback();
+
+        if (opts.callback) opts.callback();
       },
 
-      // Smooth rhythmic loop
+      // Rhythmic loop with smooth exit
       rhythmicLoop: async function (pattern, duration = 3000, callback) {
         const startTime = Date.now();
-        const patternDuration = Array.isArray(pattern) ? pattern.reduce((a, b) => a + b, 0) : pattern;
+        const patternDuration = this.getPatternDuration(pattern);
 
-        while (Date.now() - startTime < duration) {
+        while (Date.now() - startTime < duration && this.config.enabled) {
           this.vibrate(pattern);
           await new Promise(resolve => setTimeout(resolve, patternDuration + 50));
         }
@@ -2506,39 +2776,275 @@
         if (callback) callback();
       },
 
-      // Smooth fade in/out effect
-      fadeIn: async function (maxIntensity = 100, duration = 1000) {
-        const steps = 10;
+      // Smooth fade-in effect
+      fadeIn: async function (maxIntensity = 100, duration = 1000, steps = 10) {
+        const originalIntensity = this.config.intensity;
         const stepDuration = duration / steps;
 
         for (let i = 1; i <= steps; i++) {
-          const intensity = Math.round((i / steps) * maxIntensity);
-          this.vibrate([intensity]);
+          const progress = i / steps;
+          this.config.intensity = progress * (maxIntensity / 100);
+          this.vibrate(this.patterns.pulse);
           await new Promise(resolve => setTimeout(resolve, stepDuration));
+        }
+
+        this.config.intensity = originalIntensity;
+      },
+
+      // Smooth fade-out effect
+      fadeOut: async function (initialIntensity = 100, duration = 1000, steps = 10) {
+        const originalIntensity = this.config.intensity;
+        const stepDuration = duration / steps;
+
+        for (let i = steps; i >= 1; i--) {
+          const progress = i / steps;
+          this.config.intensity = progress * (initialIntensity / 100);
+          this.vibrate(this.patterns.pulse);
+          await new Promise(resolve => setTimeout(resolve, stepDuration));
+        }
+
+        this.config.intensity = originalIntensity;
+      },
+
+      // Smart pulse based on scroll velocity
+      scrollPulse: function (velocityY) {
+        const speed = Math.abs(velocityY);
+        const intensity = Math.min(speed / 1000, 1);
+
+        if (intensity > 0.3) {
+          this.vibrate(this.patterns.momentum(velocityY));
         }
       },
 
-      // Smooth pulse effect
-      pulseSmooth: async function (count = 3, intensity = 40, interval = 300) {
-        for (let i = 0; i < count; i++) {
-          this.vibrate([intensity, 20, intensity]);
-          await new Promise(resolve => setTimeout(resolve, interval));
+      // Multi-layer haptic for complex interactions
+      multiLayer: async function (layers = []) {
+        for (const layer of layers) {
+          const { pattern, duration = 100, delay = 0 } = layer;
+
+          if (delay) await new Promise(resolve => setTimeout(resolve, delay));
+
+          this.vibrate(pattern);
+          await new Promise(resolve => setTimeout(resolve, duration));
         }
+      },
+
+      // Get pattern duration
+      getPatternDuration: function (pattern) {
+        if (typeof pattern === 'function') {
+          pattern = pattern();
+        }
+        if (Array.isArray(pattern)) {
+          return pattern.reduce((a, b) => a + b, 0);
+        }
+        return pattern || 0;
+      },
+
+      // Interaction mapper - contextual haptic selection
+      interactionMap: {
+        'nav-link': 'navigate',
+        'button-click': 'click',
+        'form-focus': 'focus',
+        'form-submit': 'success',
+        'form-error': 'error',
+        'scroll-detect': 'breeze',
+        'card-hover': 'hover',
+        'card-interact': 'flow',
+        'modal-open': 'shimmer',
+        'modal-close': 'glide',
+        'notification': 'sparkle',
+        'achievement': 'dance',
+      },
+
+      // Get contextual haptic pattern
+      getContextPattern: function (action, context = {}) {
+        const basePattern = this.interactionMap[action] || 'tap';
+        let pattern = this.patterns[basePattern];
+
+        // Modify based on context
+        if (context.intensity !== undefined) {
+          pattern = this.patterns.scaled(context.intensity, context.rhythm);
+        }
+        if (context.proximity !== undefined) {
+          pattern = this.patterns.proximity(context.proximity.distance, context.proximity.max);
+        }
+        if (context.velocity !== undefined) {
+          pattern = this.patterns.momentum(context.velocity);
+        }
+
+        return pattern;
       },
 
       // Haptic on element interaction
-      onElementInteract: function (element, type = 'tap') {
-        const hapticPatterns = {
-          tap: 'tap',
-          click: 'click',
-          hover: 'light',
-          magnetic: 'flow',
-          error: 'error',
-          success: 'success',
-          navigate: 'navigate'
-        };
-        this.vibrate(this.patterns[hapticPatterns[type] || 'tap']);
+      onElementInteract: function (element, action, context = {}) {
+        const pattern = this.getContextPattern(action, context);
+        this.vibrate(pattern);
+      },
+
+      // Enable/disable haptics with toggle
+      setEnabled: function (enabled) {
+        this.config.enabled = enabled;
+        if (!enabled) this.stop();
+      },
+
+      // Set intensity level (0-1)
+      setIntensity: function (level) {
+        this.config.intensity = Math.max(0, Math.min(1, level));
+      },
+
+      // Get current intensity
+      getIntensity: function () {
+        return this.config.intensity;
+      },
+
+      // Toggle haptics on/off
+      toggleHaptics: function () {
+        this.setEnabled(!this.config.enabled);
+        return this.config.enabled;
+      },
+
+      // Haptic debug mode
+      debug: function (pattern, label = 'Debug') {
+        console.log(`🔊 Haptic: ${label}`, pattern);
+        this.vibrate(pattern);
+      },
+
+      // Legacy support for old HapticEngine calls
+      supported: () => 'vibrate' in navigator,
+    };
+
+    // Create alias for compatibility and global access
+    const HapticEngine = AdvancedHapticEngine;
+    window.AdvancedHapticEngine = AdvancedHapticEngine;
+    window.HapticEngine = HapticEngine;
+
+    tap: [20, 15, 20],
+      beat: [25, 25, 25],
+        heartbeat: [30, 20, 30, 200, 30, 20, 30],
+          rhythm: [15, 20, 15, 20, 15, 20, 15],
+            tempo: [30, 30, 30, 30, 30],
+
+              // Enhanced patterns
+              double: [30, 20, 30],
+                triple: [20, 15, 20, 15, 20],
+                  pulse: [40, 25, 40, 25, 40, 25, 40],
+
+                    // Smooth feedback
+                    success: [40, 20, 50, 20, 40],
+                      error: [60, 40, 60],
+                        warning: [50, 30, 50, 30, 50],
+
+                          // Smooth interactions
+                          pop: [35, 25],
+                            click: [25, 20, 25],
+                              navigate: [25, 15, 25, 15, 35],
+
+                                // Rhythmic interactions
+                                magic: [15, 10, 15, 10, 25, 10, 15, 10, 15],
+                                  flow: [20, 15, 25, 15, 30, 15, 25, 15, 20],
+                                    bounce: [30, 40, 20, 40, 30],
+
+                                      // Ultra-smooth patterns
+                                      velvet: [50, 30, 50],
+                                        silk: [45, 25, 45, 25, 45],
+                                          drift: [35, 30, 35, 30, 35],
+                                            wave: [25, 30, 35, 30, 25],
+
+                                              // Rhythmic smooth combinations
+                                              dance: [20, 20, 20, 25, 20, 20, 20],
+                                                swing: [30, 20, 30, 40, 30, 20, 30],
+                                                  groove: [25, 15, 35, 15, 25],
+
+                                                    // Floating patterns (very smooth)
+                                                    float: [40, 40, 40],
+                                                      glide: [50, 30, 50, 30, 50],
+                                                        breathe: [35, 40, 35],
+
+                                                          // Intensity-based smooth pattern
+                                                          intensity: (intensity) => {
+                                                            const base = Math.round(intensity * 60);
+                                                            return [base, Math.round(base * 0.5), base];
+                                                          },
+
+                                                            // Smooth crescendo
+                                                            crescendo: [20, 20, 30, 30, 40, 40, 50],
+
+                                                              // Smooth decrescendo
+                                                              decrescendo: [50, 40, 40, 30, 30, 20, 20]
+      },
+
+    // Vibrate with smooth easing
+    vibrate: function (pattern) {
+      if (this.supported() && pattern) {
+        try {
+          navigator.vibrate(pattern);
+        } catch (e) {
+          console.debug('Haptic feedback not available');
+        }
       }
+    },
+
+    // Stop vibration smoothly
+    stop: function () {
+      if (this.supported()) {
+        navigator.vibrate(0);
+      }
+    },
+
+    // Advanced patterns with smooth callbacks and timing
+    sequence: async function (patterns, callback, smoothTransition = true) {
+      for (const pattern of patterns) {
+        this.vibrate(pattern);
+        const duration = Array.isArray(pattern) ? pattern.reduce((a, b) => a + b, 0) : pattern;
+        const transitionTime = smoothTransition ? Math.round(duration * 0.3) : 0;
+        await new Promise(resolve => setTimeout(resolve, duration + transitionTime));
+      }
+      if (callback) callback();
+    },
+
+    // Smooth rhythmic loop
+    rhythmicLoop: async function (pattern, duration = 3000, callback) {
+      const startTime = Date.now();
+      const patternDuration = Array.isArray(pattern) ? pattern.reduce((a, b) => a + b, 0) : pattern;
+
+      while (Date.now() - startTime < duration) {
+        this.vibrate(pattern);
+        await new Promise(resolve => setTimeout(resolve, patternDuration + 50));
+      }
+
+      this.stop();
+      if (callback) callback();
+    },
+
+    // Smooth fade in/out effect
+    fadeIn: async function (maxIntensity = 100, duration = 1000) {
+      const steps = 10;
+      const stepDuration = duration / steps;
+
+      for (let i = 1; i <= steps; i++) {
+        const intensity = Math.round((i / steps) * maxIntensity);
+        this.vibrate([intensity]);
+        await new Promise(resolve => setTimeout(resolve, stepDuration));
+      }
+    },
+
+    // Smooth pulse effect
+    pulseSmooth: async function (count = 3, intensity = 40, interval = 300) {
+      for (let i = 0; i < count; i++) {
+        this.vibrate([intensity, 20, intensity]);
+        await new Promise(resolve => setTimeout(resolve, interval));
+      }
+    },
+
+    // Haptic on element interaction
+    onElementInteract: function (element, type = 'tap') {
+      const hapticPatterns = {
+        tap: 'tap',
+        click: 'click',
+        hover: 'light',
+        magnetic: 'flow',
+      };
+      this.vibrate(this.patterns[hapticPatterns[type] || 'tap']);
+    }
     };
 
     /* ── PRELOADER ── */
@@ -2585,335 +3091,451 @@
       scrollRingCircle.style.strokeDashoffset = ringCircumference - (progress * ringCircumference);
     }
 
-      /* ── SCROLL SPY & NAV HAPTICS ── */
-      // Add haptic feedback to nav links
+    /* ── SCROLL SPY & NAV HAPTICS ── */
+    // Add haptic feedback to nav links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.flow);
+      });
+      link.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
+      });
+    });
+    const nav = document.getElementById('nav');
+    let lastScrollY = 0;
+    let ticking = false;
+
+    function onScroll() {
+      const scrollY = window.scrollY;
+
+      // Nav border
+      nav.classList.toggle('scrolled', scrollY > 30);
+
+      // Hide nav on scroll down, show on scroll up
+      if (scrollY > lastScrollY && scrollY > 200) {
+        nav.classList.add('nav-hidden');
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+      lastScrollY = scrollY;
+
+      // Scroll spy — active nav link
+      const sections = document.querySelectorAll('section[id]');
+      let currentSection = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 200;
+        if (scrollY >= top) {
+          currentSection = section.getAttribute('id');
+        }
+      });
       document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.flow);
-        });
-        link.addEventListener('mouseenter', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.light);
-        });
+        link.classList.toggle('active', link.dataset.section === currentSection);
       });
-      const nav = document.getElementById('nav');
-      let lastScrollY = 0;
-      let ticking = false;
 
-      function onScroll() {
-        const scrollY = window.scrollY;
+      updateProgress();
+      updateScrollTop();
 
-        // Nav border
-        nav.classList.toggle('scrolled', scrollY > 30);
+      ticking = false;
+    }
 
-        // Hide nav on scroll down, show on scroll up
-        if (scrollY > lastScrollY && scrollY > 200) {
-          nav.classList.add('nav-hidden');
-        } else {
-          nav.classList.remove('nav-hidden');
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Track scroll velocity for haptic feedback
+    let lastScrollY = 0;
+    let lastScrollTime = Date.now();
+    window.addEventListener('scroll', () => {
+      const now = Date.now();
+      const delta = now - lastScrollTime;
+      const scrollDelta = window.scrollY - lastScrollY;
+
+      if (delta > 0) {
+        const velocity = scrollDelta / delta;
+        // Trigger haptic on fast scroll
+        if (Math.abs(velocity) > 1.5) {
+          HapticEngine.scrollPulse(scrollDelta);
         }
-        lastScrollY = scrollY;
-
-        // Scroll spy — active nav link
-        const sections = document.querySelectorAll('section[id]');
-        let currentSection = '';
-        sections.forEach(section => {
-          const top = section.offsetTop - 200;
-          if (scrollY >= top) {
-            currentSection = section.getAttribute('id');
-          }
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-          link.classList.toggle('active', link.dataset.section === currentSection);
-        });
-
-        updateProgress();
-        updateScrollTop();
-
-        ticking = false;
       }
 
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(onScroll);
-          ticking = true;
+      lastScrollY = window.scrollY;
+      lastScrollTime = now;
+    }, { passive: true });
+
+    /* ── MOBILE NAV TOGGLE WITH HAPTICS ── */
+    const navToggle = document.querySelector('.nav-toggle');
+    const navOverlay = document.getElementById('nav-overlay');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navToggle.classList.toggle('open');
+      navOverlay.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navOverlay.setAttribute('aria-hidden', !isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      HapticEngine.vibrate(isOpen ? HapticEngine.patterns.dance : HapticEngine.patterns.click);
+    });
+
+    navOverlay.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navOverlay.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        HapticEngine.vibrate(HapticEngine.patterns.groove);
+      });
+      link.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
+      });
+    });
+
+    /* ── HERO TEXT SPLIT ANIMATION ── */
+    const heroName = document.getElementById('hero-name');
+    const text = heroName.textContent.trim();
+    heroName.innerHTML = '';
+    text.split('').forEach((char, i) => {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      span.style.transitionDelay = `${0.15 + i * 0.06}s`;
+      heroName.appendChild(span);
+    });
+
+    /* ── HERO PARTICLES ── */
+    const particlesContainer = document.getElementById('hero-particles');
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      const size = 2 + Math.random() * 3;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.bottom = '-5%';
+      particle.style.animationDuration = (8 + Math.random() * 12) + 's';
+      particle.style.animationDelay = (Math.random() * 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    /* ── INTERSECTION OBSERVER ── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Trigger counters if about-facts enters viewport
+          if (entry.target.querySelector && entry.target.querySelector('.about-facts')) {
+            startCounters();
+          }
+          if (entry.target.classList.contains('about-facts')) {
+            startCounters();
+          }
         }
-      }, { passive: true });
-
-      /* ── MOBILE NAV TOGGLE WITH HAPTICS ── */
-      const navToggle = document.querySelector('.nav-toggle');
-      const navOverlay = document.getElementById('nav-overlay');
-
-      navToggle.addEventListener('click', () => {
-        const isOpen = navToggle.classList.toggle('open');
-        navOverlay.classList.toggle('open', isOpen);
-        navToggle.setAttribute('aria-expanded', isOpen);
-        navOverlay.setAttribute('aria-hidden', !isOpen);
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-        HapticEngine.vibrate(isOpen ? HapticEngine.patterns.dance : HapticEngine.patterns.click);
       });
+    }, { threshold: 0.1 });
 
-      navOverlay.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navToggle.classList.remove('open');
-          navOverlay.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          navOverlay.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-          HapticEngine.vibrate(HapticEngine.patterns.groove);
-        });
-        link.addEventListener('mouseenter', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.light);
-        });
-      });
+    document.querySelectorAll('.fade-in, .hero-reveal, section, .section-label').forEach(el => observer.observe(el));
 
-      /* ── HERO TEXT SPLIT ANIMATION ── */
-      const heroName = document.getElementById('hero-name');
-      const text = heroName.textContent.trim();
-      heroName.innerHTML = '';
-      text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.transitionDelay = `${0.15 + i * 0.06}s`;
-        heroName.appendChild(span);
-      });
+    /* ── COUNTER ANIMATION WITH HAPTICS ── */
+    let countersStarted = false;
+    function startCounters() {
+      if (countersStarted) return;
+      countersStarted = true;
 
-      /* ── HERO PARTICLES ── */
-      const particlesContainer = document.getElementById('hero-particles');
-      for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        const size = 2 + Math.random() * 3;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.bottom = '-5%';
-        particle.style.animationDuration = (8 + Math.random() * 12) + 's';
-        particle.style.animationDelay = (Math.random() * 10) + 's';
-        particlesContainer.appendChild(particle);
-      }
+      // Haptic for counter start - smooth entrance
+      HapticEngine.vibrate(HapticEngine.patterns.crescendo);
 
-      /* ── INTERSECTION OBSERVER ── */
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+      const counters = document.querySelectorAll('.fact-num');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-count');
+        const duration = 1500;
+        const startTime = performance.now();
 
-            // Trigger counters if about-facts enters viewport
-            if (entry.target.querySelector && entry.target.querySelector('.about-facts')) {
-              startCounters();
-            }
-            if (entry.target.classList.contains('about-facts')) {
-              startCounters();
-            }
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.fade-in, .hero-reveal, section, .section-label').forEach(el => observer.observe(el));
-
-      /* ── COUNTER ANIMATION WITH HAPTICS ── */
-      let countersStarted = false;
-      function startCounters() {
-        if (countersStarted) return;
-        countersStarted = true;
-
-        // Haptic for counter start - smooth entrance
-        HapticEngine.vibrate(HapticEngine.patterns.crescendo);
-
-        const counters = document.querySelectorAll('.fact-num');
-        counters.forEach(counter => {
-          const target = +counter.getAttribute('data-count');
-          const duration = 1500;
-          const startTime = performance.now();
-
-          function easeOutCubic(t) {
-            return 1 - Math.pow(1 - t, 3);
-          }
-
-          function updateCount(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easedProgress = easeOutCubic(progress);
-            const current = Math.round(easedProgress * target);
-
-            counter.innerText = current;
-
-            if (progress < 1) {
-              requestAnimationFrame(updateCount);
-            } else {
-              counter.innerText = target + (target === 5 ? '+' : target === 100 ? '+' : '');
-              // Smooth haptic pulse when counter finishes
-              HapticEngine.vibrate(HapticEngine.patterns.swing);
-            }
-          }
-          requestAnimationFrame(updateCount);
-        });
-      }
-
-      // Add fact items haptic feedback
-      document.querySelectorAll('.fact-item').forEach(item => {
-        item.addEventListener('mouseenter', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.light);
-        });
-        item.addEventListener('click', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.click);
-        });
-      });
-
-      // Add social links haptic feedback
-      document.querySelectorAll('.social-link').forEach(link => {
-        link.addEventListener('mouseenter', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.light);
-        });
-        link.addEventListener('click', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.glide);
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          card.style.transform = `perspective(800px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) scale(1.01)`;
-
-          // Smooth intensity-based haptic feedback
-          const distance = Math.sqrt(x * x + y * y);
-          const intensity = Math.min(distance * 2, 1);
-          HapticEngine.vibrate([Math.round(intensity * 45 + 25), 15, Math.round(intensity * 45 + 25)]);
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) scale(1)';
-          HapticEngine.stop();
-        });
-        card.addEventListener('mouseenter', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.bounce);
-        });
-        card.addEventListener('click', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.flow);
-        });
-      });
-
-      /* ── HERO WATERMARK PARALLAX ── */
-      const watermark = document.getElementById('watermark');
-      let rafId = null;
-      function updateParallax() {
-        const scroll = window.scrollY;
-        watermark.style.transform = `translateY(calc(-50% + ${scroll * 0.2}px))`;
-      }
-      window.addEventListener('scroll', () => {
-        if (rafId) cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(updateParallax);
-      }, { passive: true });
-
-      /* ── CONTACT FORM — FormSubmit.co WITH HAPTICS ── */
-      const contactForm = document.getElementById('contact-form');
-      const formInputs = document.querySelectorAll('.form-control');
-
-      // Add haptic feedback on form input focus
-      formInputs.forEach(input => {
-        input.addEventListener('focus', () => {
-          HapticEngine.vibrate(HapticEngine.patterns.silk);
-        });
-        input.addEventListener('input', () => {
-          // Smooth haptic on typing (throttled)
-        });
-      });
-
-      contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const btn = document.getElementById('submit-btn');
-        const success = document.getElementById('form-success');
-        const error = document.getElementById('form-error');
-
-        // Simple validation
-        const name = document.getElementById('name');
-        const email = document.getElementById('email');
-        const message = document.getElementById('message');
-
-        if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
-          [name, email, message].forEach(el => {
-            if (!el.value.trim()) {
-              el.style.borderColor = 'var(--accent)';
-              // Error haptic pattern
-              HapticEngine.vibrate(HapticEngine.patterns.error);
-              el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
-            }
-          });
-          return;
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
         }
 
-        // Submit haptic - smooth crescendo
-        HapticEngine.vibrate(HapticEngine.patterns.crescendo);
-        btn.style.opacity = '0.7';
-        btn.disabled = true;
-        error.style.display = 'none';
+        function updateCount(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easedProgress = easeOutCubic(progress);
+          const current = Math.round(easedProgress * target);
 
-        const formData = new FormData(contactForm);
+          counter.innerText = current;
 
-        fetch('https://formsubmit.co/ajax/ashwinsrichandra2008@gmail.com', {
-          method: 'POST',
-          body: formData
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) {
-              // Success haptic sequence - smooth and rhythmic
-              HapticEngine.sequence([
-                HapticEngine.patterns.success,
-                HapticEngine.patterns.bounce,
-                HapticEngine.patterns.dance
-              ]);
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.innerText = target + (target === 5 ? '+' : target === 100 ? '+' : '');
+            // Smooth haptic pulse when counter finishes
+            HapticEngine.vibrate(HapticEngine.patterns.swing);
+          }
+        }
+        requestAnimationFrame(updateCount);
+      });
+    }
 
-              btn.textContent = 'Sent ✓';
-              btn.style.opacity = '1';
-              success.style.display = 'block';
-              contactForm.reset();
-              setTimeout(() => {
-                btn.textContent = 'Send Message →';
-                btn.disabled = false;
-                success.style.display = 'none';
-              }, 4000);
-            } else {
-              throw new Error('Submit failed');
-            }
-          })
-          .catch(() => {
-            // Error haptic
+    // Add fact items haptic feedback
+    document.querySelectorAll('.fact-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
+      });
+      item.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.click);
+      });
+    });
+
+    // Add project cards haptic feedback with proximity-based patterns
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        // Distance-based haptic intensity
+        const distance = Math.sqrt(x * x + y * y);
+        const intensity = Math.min(distance * 1.5, 1);
+
+        if (intensity > 0.2) {
+          HapticEngine.vibrate(HapticEngine.patterns.scaled(intensity, 'smooth'));
+        }
+      });
+      card.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.bounce);
+      });
+      card.addEventListener('mouseleave', () => {
+        HapticEngine.stop();
+      });
+      card.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.flow);
+      });
+    });
+
+    // Add certification cards haptic feedback
+    document.querySelectorAll('.cert-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.shimmer);
+      });
+      card.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.dance);
+      });
+    });
+
+    // Add social links haptic feedback
+    document.querySelectorAll('.social-link').forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
+      });
+      link.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.glide);
+      });
+    });
+
+    // Add button haptic feedback
+    document.querySelectorAll('.btn-primary, .btn-ghost, .btn-submit').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.hover);
+      });
+      btn.addEventListener('click', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.click);
+      });
+    });
+
+    // Add skill group haptic feedback
+    document.querySelectorAll('.skill-group').forEach(skill => {
+      skill.addEventListener('mouseenter', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.light);
+      });
+    });
+
+    /* ── HERO WATERMARK PARALLAX ── */
+    const watermark = document.getElementById('watermark');
+    let rafId = null;
+    function updateParallax() {
+      const scroll = window.scrollY;
+      watermark.style.transform = `translateY(calc(-50% + ${scroll * 0.2}px))`;
+    }
+    window.addEventListener('scroll', () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateParallax);
+    }, { passive: true });
+
+    /* ── CONTACT FORM — FormSubmit.co WITH HAPTICS ── */
+    const contactForm = document.getElementById('contact-form');
+    const formInputs = document.querySelectorAll('.form-control');
+
+    // Add haptic feedback on form input focus
+    formInputs.forEach(input => {
+      input.addEventListener('focus', () => {
+        HapticEngine.vibrate(HapticEngine.patterns.silk);
+      });
+      input.addEventListener('input', () => {
+        // Smooth haptic on typing (throttled)
+      });
+    });
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const success = document.getElementById('form-success');
+      const error = document.getElementById('form-error');
+
+      // Simple validation
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const message = document.getElementById('message');
+
+      if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
+        [name, email, message].forEach(el => {
+          if (!el.value.trim()) {
+            el.style.borderColor = 'var(--accent)';
+            // Error haptic pattern
+            HapticEngine.vibrate(HapticEngine.patterns.error);
+            el.addEventListener('input', () => { el.style.borderColor = ''; }, { once: true });
+          }
+        });
+        return;
+      }
+
+      // Submit haptic - smooth crescendo
+      HapticEngine.vibrate(HapticEngine.patterns.crescendo);
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+      error.style.display = 'none';
+
+      const formData = new FormData(contactForm);
+
+      fetch('https://formsubmit.co/ajax/ashwinsrichandra2008@gmail.com', {
+        method: 'POST',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            // Success haptic sequence - smooth and rhythmic
             HapticEngine.sequence([
-              HapticEngine.patterns.error,
-              HapticEngine.patterns.warning
+              HapticEngine.patterns.success,
+              HapticEngine.patterns.bounce,
+              HapticEngine.patterns.dance
             ]);
 
-            btn.textContent = 'Send Message →';
+            btn.textContent = 'Sent ✓';
             btn.style.opacity = '1';
-            btn.disabled = false;
-            error.style.display = 'block';
-            setTimeout(() => { error.style.display = 'none'; }, 4000);
-          });
-      });
-
-      /* ── SMOOTH SECTION REVEAL ON SCROLL WITH HAPTICS ── */
-      const sectionEls = document.querySelectorAll('section');
-      const sectionObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-
-            // Haptic pulse when section enters viewport
-            HapticEngine.vibrate(HapticEngine.patterns.light);
+            success.style.display = 'block';
+            contactForm.reset();
+            setTimeout(() => {
+              btn.textContent = 'Send Message →';
+              btn.disabled = false;
+              success.style.display = 'none';
+            }, 4000);
+          } else {
+            throw new Error('Submit failed');
           }
+        })
+        .catch(() => {
+          // Error haptic
+          HapticEngine.sequence([
+            HapticEngine.patterns.error,
+            HapticEngine.patterns.warning
+          ]);
+
+          btn.textContent = 'Send Message →';
+          btn.style.opacity = '1';
+          btn.disabled = false;
+          error.style.display = 'block';
+          setTimeout(() => { error.style.display = 'none'; }, 4000);
         });
-      }, { threshold: 0.05 });
+    });
 
-      sectionEls.forEach(el => {
-        if (el.id !== 'hero') {
-          el.style.opacity = '0';
-          el.style.transform = 'translateY(20px)';
-          el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    /* ── SMOOTH SECTION REVEAL ON SCROLL WITH HAPTICS ── */
+    const sectionEls = document.querySelectorAll('section');
+    const sectionObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+
+          // Haptic pulse when section enters viewport
+          HapticEngine.vibrate(HapticEngine.patterns.light);
         }
-        sectionObs.observe(el);
       });
+    }, { threshold: 0.05 });
 
-      /* ── INITIAL SCROLL POSITION UPDATES ── */
-      onScroll();
+    sectionEls.forEach(el => {
+      if (el.id !== 'hero') {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      }
+      sectionObs.observe(el);
+    });
+
+    /* ── INITIAL SCROLL POSITION UPDATES ── */
+    onScroll();
+
+    /* ── HAPTIC CONTROL & SETTINGS ── */
+    // Store haptic preferences in localStorage
+    const hapticPreferences = {
+      enabled: localStorage.getItem('haptic-enabled') !== 'false',
+      intensity: parseFloat(localStorage.getItem('haptic-intensity') || '1.0'),
+    };
+
+    // Apply saved preferences
+    HapticEngine.setEnabled(hapticPreferences.enabled);
+    HapticEngine.setIntensity(hapticPreferences.intensity);
+
+    // Allow keyboard shortcut to toggle haptics (Ctrl+H)
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'h') {
+        e.preventDefault();
+        const isEnabled = HapticEngine.toggleHaptics();
+        localStorage.setItem('haptic-enabled', isEnabled);
+
+        // Haptic feedback for toggle
+        if (isEnabled) {
+          HapticEngine.vibrate(HapticEngine.patterns.dance);
+        }
+        console.log('🔊 Haptic feedback ' + (isEnabled ? 'enabled' : 'disabled'));
+      }
+    });
+
+    // Allow keyboard shortcut to adjust intensity (Ctrl+Plus/Minus)
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === '+' || e.key === '=') {
+          e.preventDefault();
+          const newIntensity = Math.min(HapticEngine.config.intensity + 0.1, 1.0);
+          HapticEngine.setIntensity(newIntensity);
+          localStorage.setItem('haptic-intensity', newIntensity);
+          HapticEngine.vibrate(HapticEngine.patterns.intensity(newIntensity));
+          console.log('🔊 Haptic intensity: ' + Math.round(newIntensity * 100) + '%');
+        } else if (e.key === '-') {
+          e.preventDefault();
+          const newIntensity = Math.max(HapticEngine.config.intensity - 0.1, 0.1);
+          HapticEngine.setIntensity(newIntensity);
+          localStorage.setItem('haptic-intensity', newIntensity);
+          HapticEngine.vibrate(HapticEngine.patterns.intensity(newIntensity));
+          console.log('🔊 Haptic intensity: ' + Math.round(newIntensity * 100) + '%');
+        }
+      }
+    });
+
+    console.log(`
+    🔊 ═══════════════════════════════════════════════════
+    🔊   ADVANCED HAPTIC ENGINE v2.0
+    🔊 ═══════════════════════════════════════════════════
+    🔊   Available globally as: AdvancedHapticEngine
+    🔊   Keyboard Shortcuts:
+    🔊   • Ctrl+H        → Toggle haptics on/off
+    🔊   • Ctrl++        → Increase intensity (+10%)
+    🔊   • Ctrl+-        → Decrease intensity (-10%)
+    🔊 ═══════════════════════════════════════════════════
+    🔊   Haptic currently: ${HapticEngine.config.enabled ? 'ENABLED ✓' : 'DISABLED'}
+    🔊   Intensity level: ${Math.round(HapticEngine.config.intensity * 100)}%
+    🔊 ═══════════════════════════════════════════════════
+    `);
   </script>
 
   <!-- CURSOR & CURTAIN ELEMENTS -->
@@ -2926,418 +3548,418 @@
 
   <!-- ADVANCED ANIMATION SCRIPT -->
   <script>
-      (function () {
-        'use strict';
+    (function () {
+      'use strict';
 
-        gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-        const isMobile = window.innerWidth < 768;
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) return;
+      const isMobile = window.innerWidth < 768;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
 
-        const ctx = gsap.context(() => {
+      const ctx = gsap.context(() => {
 
-          /* ═══════════════════════════════════════════
-             1. THREE.JS WEBGL HERO PARTICLES
-          ═══════════════════════════════════════════ */
-          let threeRAF = null;
-          if (!isMobile) {
-            const canvas = document.getElementById('hero-canvas');
-            const heroSection = document.getElementById('hero');
-            if (canvas && heroSection) {
-              const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
-              renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-              renderer.setSize(heroSection.offsetWidth, heroSection.offsetHeight);
-              renderer.setClearColor(0x000000, 0);
+        /* ═══════════════════════════════════════════
+           1. THREE.JS WEBGL HERO PARTICLES
+        ═══════════════════════════════════════════ */
+        let threeRAF = null;
+        if (!isMobile) {
+          const canvas = document.getElementById('hero-canvas');
+          const heroSection = document.getElementById('hero');
+          if (canvas && heroSection) {
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(heroSection.offsetWidth, heroSection.offsetHeight);
+            renderer.setClearColor(0x000000, 0);
 
-              const aspect = heroSection.offsetWidth / heroSection.offsetHeight;
-              const frustum = 500;
-              const camera = new THREE.OrthographicCamera(
-                -frustum * aspect, frustum * aspect,
-                frustum, -frustum, 1, 2000
-              );
-              camera.position.z = 1000;
+            const aspect = heroSection.offsetWidth / heroSection.offsetHeight;
+            const frustum = 500;
+            const camera = new THREE.OrthographicCamera(
+              -frustum * aspect, frustum * aspect,
+              frustum, -frustum, 1, 2000
+            );
+            camera.position.z = 1000;
 
-              const scene = new THREE.Scene();
+            const scene = new THREE.Scene();
 
-              const PARTICLE_COUNT = 120;
-              const positions = new Float32Array(PARTICLE_COUNT * 3);
-              const basePositions = new Float32Array(PARTICLE_COUNT * 3);
-              const speeds = new Float32Array(PARTICLE_COUNT);
-              const phases = new Float32Array(PARTICLE_COUNT);
-              const amplitudes = new Float32Array(PARTICLE_COUNT);
+            const PARTICLE_COUNT = 120;
+            const positions = new Float32Array(PARTICLE_COUNT * 3);
+            const basePositions = new Float32Array(PARTICLE_COUNT * 3);
+            const speeds = new Float32Array(PARTICLE_COUNT);
+            const phases = new Float32Array(PARTICLE_COUNT);
+            const amplitudes = new Float32Array(PARTICLE_COUNT);
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+              const x = (Math.random() - 0.5) * heroSection.offsetWidth * 1.2;
+              const y = (Math.random() - 0.5) * heroSection.offsetHeight * 1.2;
+              const z = (Math.random() - 0.5) * 200;
+              positions[i * 3] = x;
+              positions[i * 3 + 1] = y;
+              positions[i * 3 + 2] = z;
+              basePositions[i * 3] = x;
+              basePositions[i * 3 + 1] = y;
+              basePositions[i * 3 + 2] = z;
+              speeds[i] = 0.2 + Math.random() * 0.5;
+              phases[i] = Math.random() * Math.PI * 2;
+              amplitudes[i] = 15 + Math.random() * 30;
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const material = new THREE.PointsMaterial({
+              color: 0xd9d5cc,
+              size: 3,
+              transparent: true,
+              opacity: 0.6,
+              sizeAttenuation: false
+            });
+
+            const points = new THREE.Points(geometry, material);
+            scene.add(points);
+
+            let mouseHero = { x: 99999, y: 99999 };
+            heroSection.addEventListener('mousemove', (e) => {
+              const rect = heroSection.getBoundingClientRect();
+              mouseHero.x = (e.clientX - rect.left) - rect.width / 2;
+              mouseHero.y = -(e.clientY - rect.top) + rect.height / 2;
+            });
+            heroSection.addEventListener('mouseleave', () => {
+              mouseHero.x = 99999;
+              mouseHero.y = 99999;
+            });
+
+            const clock = new THREE.Clock();
+            function animateThree() {
+              threeRAF = requestAnimationFrame(animateThree);
+              const t = clock.getElapsedTime();
+              const posArr = geometry.attributes.position.array;
 
               for (let i = 0; i < PARTICLE_COUNT; i++) {
-                const x = (Math.random() - 0.5) * heroSection.offsetWidth * 1.2;
-                const y = (Math.random() - 0.5) * heroSection.offsetHeight * 1.2;
-                const z = (Math.random() - 0.5) * 200;
-                positions[i * 3] = x;
-                positions[i * 3 + 1] = y;
-                positions[i * 3 + 2] = z;
-                basePositions[i * 3] = x;
-                basePositions[i * 3 + 1] = y;
-                basePositions[i * 3 + 2] = z;
-                speeds[i] = 0.2 + Math.random() * 0.5;
-                phases[i] = Math.random() * Math.PI * 2;
-                amplitudes[i] = 15 + Math.random() * 30;
-              }
+                const bx = basePositions[i * 3];
+                const by = basePositions[i * 3 + 1];
 
-              const geometry = new THREE.BufferGeometry();
-              geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                // Sinusoidal drift
+                let newY = by + Math.sin(t * speeds[i] + phases[i]) * amplitudes[i];
+                let newX = bx + Math.cos(t * speeds[i] * 0.7 + phases[i]) * amplitudes[i] * 0.5;
 
-              const material = new THREE.PointsMaterial({
-                color: 0xd9d5cc,
-                size: 3,
-                transparent: true,
-                opacity: 0.6,
-                sizeAttenuation: false
-              });
-
-              const points = new THREE.Points(geometry, material);
-              scene.add(points);
-
-              let mouseHero = { x: 99999, y: 99999 };
-              heroSection.addEventListener('mousemove', (e) => {
-                const rect = heroSection.getBoundingClientRect();
-                mouseHero.x = (e.clientX - rect.left) - rect.width / 2;
-                mouseHero.y = -(e.clientY - rect.top) + rect.height / 2;
-              });
-              heroSection.addEventListener('mouseleave', () => {
-                mouseHero.x = 99999;
-                mouseHero.y = 99999;
-              });
-
-              const clock = new THREE.Clock();
-              function animateThree() {
-                threeRAF = requestAnimationFrame(animateThree);
-                const t = clock.getElapsedTime();
-                const posArr = geometry.attributes.position.array;
-
-                for (let i = 0; i < PARTICLE_COUNT; i++) {
-                  const bx = basePositions[i * 3];
-                  const by = basePositions[i * 3 + 1];
-
-                  // Sinusoidal drift
-                  let newY = by + Math.sin(t * speeds[i] + phases[i]) * amplitudes[i];
-                  let newX = bx + Math.cos(t * speeds[i] * 0.7 + phases[i]) * amplitudes[i] * 0.5;
-
-                  // Mouse repulsion
-                  const dx = newX - mouseHero.x;
-                  const dy = newY - mouseHero.y;
-                  const dist = Math.sqrt(dx * dx + dy * dy);
-                  const repelRadius = 80;
-                  if (dist < repelRadius && dist > 0) {
-                    const force = (1 - dist / repelRadius) * 40;
-                    newX += (dx / dist) * force;
-                    newY += (dy / dist) * force;
-                  }
-
-                  posArr[i * 3] = newX;
-                  posArr[i * 3 + 1] = newY;
+                // Mouse repulsion
+                const dx = newX - mouseHero.x;
+                const dy = newY - mouseHero.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const repelRadius = 80;
+                if (dist < repelRadius && dist > 0) {
+                  const force = (1 - dist / repelRadius) * 40;
+                  newX += (dx / dist) * force;
+                  newY += (dy / dist) * force;
                 }
-                geometry.attributes.position.needsUpdate = true;
-                renderer.render(scene, camera);
-              }
-              animateThree();
 
-              window.addEventListener('resize', () => {
-                const w = heroSection.offsetWidth;
-                const h = heroSection.offsetHeight;
-                renderer.setSize(w, h);
-                const a = w / h;
-                camera.left = -frustum * a;
-                camera.right = frustum * a;
-                camera.top = frustum;
-                camera.bottom = -frustum;
-                camera.updateProjectionMatrix();
-              });
+                posArr[i * 3] = newX;
+                posArr[i * 3 + 1] = newY;
+              }
+              geometry.attributes.position.needsUpdate = true;
+              renderer.render(scene, camera);
+            }
+            animateThree();
+
+            window.addEventListener('resize', () => {
+              const w = heroSection.offsetWidth;
+              const h = heroSection.offsetHeight;
+              renderer.setSize(w, h);
+              const a = w / h;
+              camera.left = -frustum * a;
+              camera.right = frustum * a;
+              camera.top = frustum;
+              camera.bottom = -frustum;
+              camera.updateProjectionMatrix();
+            });
+          }
+        }
+
+        /* ═══════════════════════════════════════════
+           2. HERO NAME — GSAP STAGGERED 3D LETTER REVEAL
+        ═══════════════════════════════════════════ */
+        const heroChars = document.querySelectorAll('.hero-name .char');
+        if (heroChars.length) {
+          // Override the CSS transition-based approach with GSAP
+          gsap.set(heroChars, { opacity: 0, y: 60, rotateX: -40, transformOrigin: 'bottom center' });
+
+          // Will be triggered after preloader
+          const heroNameTL = gsap.timeline({ paused: true });
+          heroNameTL.to(heroChars, {
+            opacity: 1, y: 0, rotateX: 0,
+            duration: 0.7,
+            stagger: 0.06,
+            ease: 'power3.out',
+            clearProps: 'transform'
+          });
+
+          // Wait for preloader to finish, then play
+          setTimeout(() => {
+            heroNameTL.play();
+          }, 1700);
+        }
+
+        /* ═══════════════════════════════════════════
+           3. HERO TAG — TYPEWRITER EFFECT
+        ═══════════════════════════════════════════ */
+        const heroTag = document.querySelector('.hero-tag');
+        if (heroTag) {
+          const fullText = heroTag.textContent.trim();
+          heroTag.textContent = '';
+          heroTag.style.opacity = '1';
+          heroTag.style.transform = 'translateY(0)';
+
+          let charIndex = 0;
+          const cursorSpan = document.createElement('span');
+          cursorSpan.className = 'tw-cursor';
+          heroTag.appendChild(cursorSpan);
+
+          function typeNext() {
+            if (charIndex < fullText.length) {
+              // Insert text node before cursor
+              heroTag.insertBefore(document.createTextNode(fullText[charIndex]), cursorSpan);
+              charIndex++;
+              setTimeout(typeNext, 40);
+            } else {
+              // Fade out cursor after finishing
+              setTimeout(() => {
+                gsap.to(cursorSpan, { opacity: 0, duration: 0.5, onComplete: () => cursorSpan.remove() });
+              }, 2000);
             }
           }
 
-          /* ═══════════════════════════════════════════
-             2. HERO NAME — GSAP STAGGERED 3D LETTER REVEAL
-          ═══════════════════════════════════════════ */
-          const heroChars = document.querySelectorAll('.hero-name .char');
-          if (heroChars.length) {
-            // Override the CSS transition-based approach with GSAP
-            gsap.set(heroChars, { opacity: 0, y: 60, rotateX: -40, transformOrigin: 'bottom center' });
+          // Start after hero name animation (~0.9s after preloader)
+          setTimeout(typeNext, 2500);
+        }
 
-            // Will be triggered after preloader
-            const heroNameTL = gsap.timeline({ paused: true });
-            heroNameTL.to(heroChars, {
-              opacity: 1, y: 0, rotateX: 0,
-              duration: 0.7,
-              stagger: 0.06,
-              ease: 'power3.out',
-              clearProps: 'transform'
-            });
+        /* ═══════════════════════════════════════════
+           4. NAV LINKS — ENHANCED MAGNETIC HOVER
+        ═══════════════════════════════════════════ */
+        if (!isMobile) {
+          document.querySelectorAll('.nav-links a').forEach(link => {
+            let target = { x: 0, y: 0 };
+            let current = { x: 0, y: 0 };
+            let raf = null;
+            let hovering = false;
 
-            // Wait for preloader to finish, then play
-            setTimeout(() => {
-              heroNameTL.play();
-            }, 1700);
-          }
-
-          /* ═══════════════════════════════════════════
-             3. HERO TAG — TYPEWRITER EFFECT
-          ═══════════════════════════════════════════ */
-          const heroTag = document.querySelector('.hero-tag');
-          if (heroTag) {
-            const fullText = heroTag.textContent.trim();
-            heroTag.textContent = '';
-            heroTag.style.opacity = '1';
-            heroTag.style.transform = 'translateY(0)';
-
-            let charIndex = 0;
-            const cursorSpan = document.createElement('span');
-            cursorSpan.className = 'tw-cursor';
-            heroTag.appendChild(cursorSpan);
-
-            function typeNext() {
-              if (charIndex < fullText.length) {
-                // Insert text node before cursor
-                heroTag.insertBefore(document.createTextNode(fullText[charIndex]), cursorSpan);
-                charIndex++;
-                setTimeout(typeNext, 40);
-              } else {
-                // Fade out cursor after finishing
-                setTimeout(() => {
-                  gsap.to(cursorSpan, { opacity: 0, duration: 0.5, onComplete: () => cursorSpan.remove() });
-                }, 2000);
+            function lerpMag() {
+              current.x += (target.x - current.x) * 0.15;
+              current.y += (target.y - current.y) * 0.15;
+              link.style.transform = `translate(${current.x}px, ${current.y}px)`;
+              if (hovering || Math.abs(current.x - target.x) > 0.1 || Math.abs(current.y - target.y) > 0.1) {
+                raf = requestAnimationFrame(lerpMag);
               }
             }
 
-            // Start after hero name animation (~0.9s after preloader)
-            setTimeout(typeNext, 2500);
-          }
-
-          /* ═══════════════════════════════════════════
-             4. NAV LINKS — ENHANCED MAGNETIC HOVER
-          ═══════════════════════════════════════════ */
-          if (!isMobile) {
-            document.querySelectorAll('.nav-links a').forEach(link => {
-              let target = { x: 0, y: 0 };
-              let current = { x: 0, y: 0 };
-              let raf = null;
-              let hovering = false;
-
-              function lerpMag() {
-                current.x += (target.x - current.x) * 0.15;
-                current.y += (target.y - current.y) * 0.15;
-                link.style.transform = `translate(${current.x}px, ${current.y}px)`;
-                if (hovering || Math.abs(current.x - target.x) > 0.1 || Math.abs(current.y - target.y) > 0.1) {
-                  raf = requestAnimationFrame(lerpMag);
-                }
-              }
-
-              link.addEventListener('mouseenter', () => { hovering = true; lerpMag(); });
-              link.addEventListener('mousemove', (e) => {
-                const rect = link.getBoundingClientRect();
-                target.x = (e.clientX - rect.left - rect.width / 2) * 0.35;
-                target.y = (e.clientY - rect.top - rect.height / 2) * 0.25;
-                target.x = Math.max(-6, Math.min(6, target.x));
-                target.y = Math.max(-4, Math.min(4, target.y));
-              });
-              link.addEventListener('mouseleave', () => {
-                hovering = false;
-                target.x = 0; target.y = 0;
-              });
+            link.addEventListener('mouseenter', () => { hovering = true; lerpMag(); });
+            link.addEventListener('mousemove', (e) => {
+              const rect = link.getBoundingClientRect();
+              target.x = (e.clientX - rect.left - rect.width / 2) * 0.35;
+              target.y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+              target.x = Math.max(-6, Math.min(6, target.x));
+              target.y = Math.max(-4, Math.min(4, target.y));
             });
-          }
+            link.addEventListener('mouseleave', () => {
+              hovering = false;
+              target.x = 0; target.y = 0;
+            });
+          });
+        }
 
-          /* ═══════════════════════════════════════════
-             5. SECTION HEADINGS — CLIP-PATH REVEAL
-          ═══════════════════════════════════════════ */
-          const headings = document.querySelectorAll('.about-quote, .contact-heading');
-          headings.forEach(h => {
-            h.classList.add('reveal-heading');
+        /* ═══════════════════════════════════════════
+           5. SECTION HEADINGS — CLIP-PATH REVEAL
+        ═══════════════════════════════════════════ */
+        const headings = document.querySelectorAll('.about-quote, .contact-heading');
+        headings.forEach(h => {
+          h.classList.add('reveal-heading');
+          ScrollTrigger.create({
+            trigger: h,
+            start: 'top 85%',
+            once: true,
+            onEnter: () => {
+              gsap.to(h, {
+                clipPath: 'inset(0 0% 0 0)',
+                duration: 0.9,
+                ease: 'power2.inOut'
+              });
+            }
+          });
+        });
+
+        /* ═══════════════════════════════════════════
+           6. PROJECT CARDS — 3D TILT + SHINE (GSAP quickTo)
+        ═══════════════════════════════════════════ */
+        if (!isMobile) {
+          document.querySelectorAll('.project-card').forEach(card => {
+            // Inject shine overlay
+            const shine = document.createElement('div');
+            shine.className = 'card-shine';
+            card.appendChild(shine);
+
+            const xTo = gsap.quickTo(card, 'rotateY', { duration: 0.4, ease: 'power2.out' });
+            const yTo = gsap.quickTo(card, 'rotateX', { duration: 0.4, ease: 'power2.out' });
+
+            // We need to use an overwrite approach with gsap.set for perspective
+            card.addEventListener('mousemove', (e) => {
+              const rect = card.getBoundingClientRect();
+              const px = (e.clientX - rect.left) / rect.width;
+              const py = (e.clientY - rect.top) / rect.height;
+              const xDeg = (px - 0.5) * 16;  // ±8deg
+              const yDeg = -(py - 0.5) * 16; // ±8deg
+
+              gsap.set(card, { transformPerspective: 600 });
+              xTo(xDeg);
+              yTo(yDeg);
+
+              // Shine gradient tracking
+              shine.style.background = `radial-gradient(circle at ${px * 100}% ${py * 100}%, rgba(255,255,255,0.08) 0%, transparent 60%)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+              gsap.to(card, {
+                rotateX: 0, rotateY: 0,
+                duration: 0.6,
+                ease: 'elastic.out(1, 0.5)',
+                transformPerspective: 600
+              });
+              shine.style.background = 'none';
+            });
+          });
+        }
+
+        /* ═══════════════════════════════════════════
+           7. ABOUT FACTS — GSAP COUNT-UP
+        ═══════════════════════════════════════════ */
+        const factNums = document.querySelectorAll('.fact-num');
+        if (factNums.length) {
+          const countersObj = {};
+          factNums.forEach((el, i) => {
+            el._gsapCounted = false;
+            countersObj['c' + i] = 0;
+          });
+
+          ScrollTrigger.create({
+            trigger: '.about-facts',
+            start: 'top 80%',
+            once: true,
+            onEnter: () => {
+              factNums.forEach((el, i) => {
+                if (el._gsapCounted) return;
+                el._gsapCounted = true;
+                const target = parseInt(el.getAttribute('data-count'), 10);
+                const suffix = (target === 5 || target === 100) ? '+' : '';
+                const obj = { val: 0 };
+                gsap.to(obj, {
+                  val: target,
+                  duration: 1.5,
+                  ease: 'power2.out',
+                  snap: { val: 1 },
+                  onUpdate: () => { el.textContent = Math.round(obj.val); },
+                  onComplete: () => { el.textContent = target + suffix; }
+                });
+              });
+            }
+          });
+        }
+
+        /* ═══════════════════════════════════════════
+           8. SKILLS GRID — STAGGERED SLIDE-IN
+        ═══════════════════════════════════════════ */
+        const skillGroups = gsap.utils.toArray('.skill-group');
+        if (skillGroups.length) {
+          skillGroups.forEach((sg, i) => {
+            const dir = i % 2 === 0 ? -40 : 40;
+            gsap.set(sg, { x: dir, opacity: 0 });
+
             ScrollTrigger.create({
-              trigger: h,
-              start: 'top 85%',
+              trigger: sg,
+              start: 'top 88%',
               once: true,
               onEnter: () => {
-                gsap.to(h, {
-                  clipPath: 'inset(0 0% 0 0)',
-                  duration: 0.9,
-                  ease: 'power2.inOut'
+                gsap.to(sg, {
+                  x: 0, opacity: 1,
+                  duration: 0.7,
+                  delay: i * 0.08,
+                  ease: 'power2.out',
+                  onComplete: () => sg.classList.add('sg-revealed')
                 });
               }
             });
           });
+        }
 
-          /* ═══════════════════════════════════════════
-             6. PROJECT CARDS — 3D TILT + SHINE (GSAP quickTo)
-          ═══════════════════════════════════════════ */
-          if (!isMobile) {
-            document.querySelectorAll('.project-card').forEach(card => {
-              // Inject shine overlay
-              const shine = document.createElement('div');
-              shine.className = 'card-shine';
-              card.appendChild(shine);
-
-              const xTo = gsap.quickTo(card, 'rotateY', { duration: 0.4, ease: 'power2.out' });
-              const yTo = gsap.quickTo(card, 'rotateX', { duration: 0.4, ease: 'power2.out' });
-
-              // We need to use an overwrite approach with gsap.set for perspective
-              card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const px = (e.clientX - rect.left) / rect.width;
-                const py = (e.clientY - rect.top) / rect.height;
-                const xDeg = (px - 0.5) * 16;  // ±8deg
-                const yDeg = -(py - 0.5) * 16; // ±8deg
-
-                gsap.set(card, { transformPerspective: 600 });
-                xTo(xDeg);
-                yTo(yDeg);
-
-                // Shine gradient tracking
-                shine.style.background = `radial-gradient(circle at ${px * 100}% ${py * 100}%, rgba(255,255,255,0.08) 0%, transparent 60%)`;
-              });
-
-              card.addEventListener('mouseleave', () => {
-                gsap.to(card, {
-                  rotateX: 0, rotateY: 0,
-                  duration: 0.6,
-                  ease: 'elastic.out(1, 0.5)',
-                  transformPerspective: 600
-                });
-                shine.style.background = 'none';
-              });
-            });
-          }
-
-          /* ═══════════════════════════════════════════
-             7. ABOUT FACTS — GSAP COUNT-UP
-          ═══════════════════════════════════════════ */
-          const factNums = document.querySelectorAll('.fact-num');
-          if (factNums.length) {
-            const countersObj = {};
-            factNums.forEach((el, i) => {
-              el._gsapCounted = false;
-              countersObj['c' + i] = 0;
-            });
-
-            ScrollTrigger.create({
-              trigger: '.about-facts',
-              start: 'top 80%',
-              once: true,
-              onEnter: () => {
-                factNums.forEach((el, i) => {
-                  if (el._gsapCounted) return;
-                  el._gsapCounted = true;
-                  const target = parseInt(el.getAttribute('data-count'), 10);
-                  const suffix = (target === 5 || target === 100) ? '+' : '';
-                  const obj = { val: 0 };
-                  gsap.to(obj, {
-                    val: target,
-                    duration: 1.5,
-                    ease: 'power2.out',
-                    snap: { val: 1 },
-                    onUpdate: () => { el.textContent = Math.round(obj.val); },
-                    onComplete: () => { el.textContent = target + suffix; }
-                  });
-                });
+        /* ═══════════════════════════════════════════
+           9. CONTACT SECTION — PARALLAX (scrub)
+        ═══════════════════════════════════════════ */
+        if (!isMobile) {
+          const contactLeft = document.querySelector('#contact .contact-grid > div:first-child');
+          if (contactLeft) {
+            gsap.to(contactLeft, {
+              y: -40,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: '#contact',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true
               }
             });
           }
+        }
 
-          /* ═══════════════════════════════════════════
-             8. SKILLS GRID — STAGGERED SLIDE-IN
-          ═══════════════════════════════════════════ */
-          const skillGroups = gsap.utils.toArray('.skill-group');
-          if (skillGroups.length) {
-            skillGroups.forEach((sg, i) => {
-              const dir = i % 2 === 0 ? -40 : 40;
-              gsap.set(sg, { x: dir, opacity: 0 });
+        /* ═══════════════════════════════════════════
+           10. CURTAIN WIPE ON ANCHOR CLICKS
+        ═══════════════════════════════════════════ */
+        const curtain = document.getElementById('curtain');
+        if (curtain) {
+          document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+              const targetId = link.getAttribute('href');
+              if (targetId === '#' || !targetId) return;
+              const targetEl = document.querySelector(targetId);
+              if (!targetEl) return;
 
-              ScrollTrigger.create({
-                trigger: sg,
-                start: 'top 88%',
-                once: true,
-                onEnter: () => {
-                  gsap.to(sg, {
-                    x: 0, opacity: 1,
-                    duration: 0.7,
-                    delay: i * 0.08,
-                    ease: 'power2.out',
-                    onComplete: () => sg.classList.add('sg-revealed')
+              e.preventDefault();
+              const tl = gsap.timeline();
+              tl.to(curtain, {
+                y: 0,
+                duration: 0.5,
+                ease: 'power3.inOut',
+                onStart: () => { curtain.style.transform = 'translateY(100%)'; }
+              })
+                .add(() => {
+                  window.scrollTo({
+                    top: targetEl.offsetTop,
+                    behavior: 'auto'
                   });
-                }
-              });
-            });
-          }
-
-          /* ═══════════════════════════════════════════
-             9. CONTACT SECTION — PARALLAX (scrub)
-          ═══════════════════════════════════════════ */
-          if (!isMobile) {
-            const contactLeft = document.querySelector('#contact .contact-grid > div:first-child');
-            if (contactLeft) {
-              gsap.to(contactLeft, {
-                y: -40,
-                ease: 'none',
-                scrollTrigger: {
-                  trigger: '#contact',
-                  start: 'top bottom',
-                  end: 'bottom top',
-                  scrub: true
-                }
-              });
-            }
-          }
-
-          /* ═══════════════════════════════════════════
-             10. CURTAIN WIPE ON ANCHOR CLICKS
-          ═══════════════════════════════════════════ */
-          const curtain = document.getElementById('curtain');
-          if (curtain) {
-            document.querySelectorAll('a[href^="#"]').forEach(link => {
-              link.addEventListener('click', (e) => {
-                const targetId = link.getAttribute('href');
-                if (targetId === '#' || !targetId) return;
-                const targetEl = document.querySelector(targetId);
-                if (!targetEl) return;
-
-                e.preventDefault();
-                const tl = gsap.timeline();
-                tl.to(curtain, {
-                  y: 0,
+                })
+                .to(curtain, {
+                  y: '-100%',
                   duration: 0.5,
                   ease: 'power3.inOut',
-                  onStart: () => { curtain.style.transform = 'translateY(100%)'; }
+                  delay: 0.05
                 })
-                  .add(() => {
-                    window.scrollTo({
-                      top: targetEl.offsetTop,
-                      behavior: 'auto'
-                    });
-                  })
-                  .to(curtain, {
-                    y: '-100%',
-                    duration: 0.5,
-                    ease: 'power3.inOut',
-                    delay: 0.05
-                  })
-                  .set(curtain, { y: '100%' });
-              });
+                .set(curtain, { y: '100%' });
             });
-          }
-
-          /* ═══════════════════════════════════════════
-             PERFORMANCE: VISIBILITY CHANGE CLEANUP
-          ═══════════════════════════════════════════ */
-          document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-              if (threeRAF) cancelAnimationFrame(threeRAF);
-              ScrollTrigger.getAll().forEach(st => st.disable());
-            } else {
-              ScrollTrigger.getAll().forEach(st => st.enable());
-            }
           });
+        }
 
-        }); // end gsap.context
+        /* ═══════════════════════════════════════════
+           PERFORMANCE: VISIBILITY CHANGE CLEANUP
+        ═══════════════════════════════════════════ */
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            if (threeRAF) cancelAnimationFrame(threeRAF);
+            ScrollTrigger.getAll().forEach(st => st.disable());
+          } else {
+            ScrollTrigger.getAll().forEach(st => st.enable());
+          }
+        });
 
-      })();
+      }); // end gsap.context
+
+    })();
   </script>
 </body>
 
