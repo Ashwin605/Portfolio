@@ -3048,12 +3048,26 @@
     };
 
     /* ── PRELOADER ── */
+    function hidePreloader() {
+      const preloader = document.getElementById('preloader');
+      const hero = document.querySelector('.hero-reveal');
+      
+      if (preloader) preloader.classList.add('loaded');
+      if (hero) hero.classList.add('visible');
+    }
+
+    // Hide preloader on load event
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('preloader').classList.add('loaded');
-        document.querySelector('.hero-reveal').classList.add('visible');
-      }, 1600);
+      setTimeout(hidePreloader, 1200);
     });
+
+    // Fallback: hide preloader if already loaded or after max time
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(hidePreloader, 500);
+    }
+
+    // Safety net: force hide after 3 seconds max
+    setTimeout(hidePreloader, 3000);
 
     /* ── SCROLL PROGRESS BAR ── */
     const progressBar = document.getElementById('scroll-progress');
