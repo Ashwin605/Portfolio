@@ -2917,141 +2917,33 @@
     window.AdvancedHapticEngine = AdvancedHapticEngine;
     window.HapticEngine = HapticEngine;
 
-    tap: [20, 15, 20],
-      beat: [25, 25, 25],
-        heartbeat: [30, 20, 30, 200, 30, 20, 30],
-          rhythm: [15, 20, 15, 20, 15, 20, 15],
-            tempo: [30, 30, 30, 30, 30],
-
-              // Enhanced patterns
-              double: [30, 20, 30],
-                triple: [20, 15, 20, 15, 20],
-                  pulse: [40, 25, 40, 25, 40, 25, 40],
-
-                    // Smooth feedback
-                    success: [40, 20, 50, 20, 40],
-                      error: [60, 40, 60],
-                        warning: [50, 30, 50, 30, 50],
-
-                          // Smooth interactions
-                          pop: [35, 25],
-                            click: [25, 20, 25],
-                              navigate: [25, 15, 25, 15, 35],
-
-                                // Rhythmic interactions
-                                magic: [15, 10, 15, 10, 25, 10, 15, 10, 15],
-                                  flow: [20, 15, 25, 15, 30, 15, 25, 15, 20],
-                                    bounce: [30, 40, 20, 40, 30],
-
-                                      // Ultra-smooth patterns
-                                      velvet: [50, 30, 50],
-                                        silk: [45, 25, 45, 25, 45],
-                                          drift: [35, 30, 35, 30, 35],
-                                            wave: [25, 30, 35, 30, 25],
-
-                                              // Rhythmic smooth combinations
-                                              dance: [20, 20, 20, 25, 20, 20, 20],
-                                                swing: [30, 20, 30, 40, 30, 20, 30],
-                                                  groove: [25, 15, 35, 15, 25],
-
-                                                    // Floating patterns (very smooth)
-                                                    float: [40, 40, 40],
-                                                      glide: [50, 30, 50, 30, 50],
-                                                        breathe: [35, 40, 35],
-
-                                                          // Intensity-based smooth pattern
-                                                          intensity: (intensity) => {
-                                                            const base = Math.round(intensity * 60);
-                                                            return [base, Math.round(base * 0.5), base];
-                                                          },
-
-                                                            // Smooth crescendo
-                                                            crescendo: [20, 20, 30, 30, 40, 40, 50],
-
-                                                              // Smooth decrescendo
-                                                              decrescendo: [50, 40, 40, 30, 30, 20, 20]
-      },
-
-    // Vibrate with smooth easing
-    vibrate: function (pattern) {
-      if (this.supported() && pattern) {
-        try {
-          navigator.vibrate(pattern);
-        } catch (e) {
-          console.debug('Haptic feedback not available');
-        }
-      }
-    },
-
-    // Stop vibration smoothly
-    stop: function () {
-      if (this.supported()) {
-        navigator.vibrate(0);
-      }
-    },
-
-    // Advanced patterns with smooth callbacks and timing
-    sequence: async function (patterns, callback, smoothTransition = true) {
-      for (const pattern of patterns) {
-        this.vibrate(pattern);
-        const duration = Array.isArray(pattern) ? pattern.reduce((a, b) => a + b, 0) : pattern;
-        const transitionTime = smoothTransition ? Math.round(duration * 0.3) : 0;
-        await new Promise(resolve => setTimeout(resolve, duration + transitionTime));
-      }
-      if (callback) callback();
-    },
-
-    // Smooth rhythmic loop
-    rhythmicLoop: async function (pattern, duration = 3000, callback) {
-      const startTime = Date.now();
-      const patternDuration = Array.isArray(pattern) ? pattern.reduce((a, b) => a + b, 0) : pattern;
-
-      while (Date.now() - startTime < duration) {
-        this.vibrate(pattern);
-        await new Promise(resolve => setTimeout(resolve, patternDuration + 50));
-      }
-
-      this.stop();
-      if (callback) callback();
-    },
-
-    // Smooth fade in/out effect
-    fadeIn: async function (maxIntensity = 100, duration = 1000) {
-      const steps = 10;
-      const stepDuration = duration / steps;
-
-      for (let i = 1; i <= steps; i++) {
-        const intensity = Math.round((i / steps) * maxIntensity);
-        this.vibrate([intensity]);
-        await new Promise(resolve => setTimeout(resolve, stepDuration));
-      }
-    },
-
-    // Smooth pulse effect
-    pulseSmooth: async function (count = 3, intensity = 40, interval = 300) {
-      for (let i = 0; i < count; i++) {
-        this.vibrate([intensity, 20, intensity]);
-        await new Promise(resolve => setTimeout(resolve, interval));
-      }
-    },
-
-    // Haptic on element interaction
-    onElementInteract: function (element, type = 'tap') {
-      const hapticPatterns = {
-        tap: 'tap',
-        click: 'click',
-        hover: 'light',
-        magnetic: 'flow',
-      };
-      this.vibrate(this.patterns[hapticPatterns[type] || 'tap']);
-    }
-    };
-
     /* ── PRELOADER ── */
     function hidePreloader() {
       const preloader = document.getElementById('preloader');
       const hero = document.querySelector('.hero-reveal');
-      
+
+      if (preloader) preloader.classList.add('loaded');
+      if (hero) hero.classList.add('visible');
+    }
+
+    // Hide preloader on load event
+    window.addEventListener('load', () => {
+      setTimeout(hidePreloader, 800);
+    });
+
+    // Fallback: hide preloader if already loaded or after max time
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setTimeout(hidePreloader, 300);
+    }
+
+    // Safety net: force hide after 2 seconds max
+    setTimeout(hidePreloader, 2000);
+
+    /* ── SCROLL PROGRESS BAR ── */
+    function hidePreloader() {
+      const preloader = document.getElementById('preloader');
+      const hero = document.querySelector('.hero-reveal');
+
       if (preloader) preloader.classList.add('loaded');
       if (hero) hero.classList.add('visible');
     }
