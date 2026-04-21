@@ -2682,6 +2682,7 @@
           const clamped = Math.min(Math.abs(velocity) / 1000, 1);
           return [Math.round(clamped * 50 + 20), Math.round(clamped * 30), Math.round(clamped * 50 + 20)];
         },
+        swing: [30, 20, 30],
       },
 
       // Haptic state management
@@ -2940,28 +2941,6 @@
     setTimeout(hidePreloader, 2000);
 
     /* ── SCROLL PROGRESS BAR ── */
-    function hidePreloader() {
-      const preloader = document.getElementById('preloader');
-      const hero = document.querySelector('.hero-reveal');
-
-      if (preloader) preloader.classList.add('loaded');
-      if (hero) hero.classList.add('visible');
-    }
-
-    // Hide preloader on load event
-    window.addEventListener('load', () => {
-      setTimeout(hidePreloader, 1200);
-    });
-
-    // Fallback: hide preloader if already loaded or after max time
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      setTimeout(hidePreloader, 500);
-    }
-
-    // Safety net: force hide after 3 seconds max
-    setTimeout(hidePreloader, 3000);
-
-    /* ── SCROLL PROGRESS BAR ── */
     const progressBar = document.getElementById('scroll-progress');
     function updateProgress() {
       const scrollTop = window.scrollY;
@@ -2969,6 +2948,7 @@
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       progressBar.style.width = progress + '%';
     }
+
 
     /* ── SCROLL TO TOP BUTTON + RING WITH HAPTICS ── */
     const scrollTopBtn = document.getElementById('scroll-top');
@@ -3052,7 +3032,6 @@
     }, { passive: true });
 
     // Track scroll velocity for haptic feedback
-    let lastScrollY = 0;
     let lastScrollTime = Date.now();
     window.addEventListener('scroll', () => {
       const now = Date.now();
