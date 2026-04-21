@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Ashwin Sri Chandra — Developer, Builder, Creator. CSE undergrad building full-stack apps, AI-powered platforms, and 3D printing businesses.">
-  <title>Ashwin — Developer & Builder</title>
+    content="Ashwin Sri Chandra — Builds, Builder, Creator. CSE undergrad building full-stack apps, AI-powered platforms, and 3D printing businesses.">
+  <title>Ashwin — Builds & Builder</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -90,12 +90,29 @@
     }
 
     .preloader-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.4rem;
-      color: var(--ink);
-      letter-spacing: -0.03em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
       opacity: 0;
       animation: preloaderFadeIn 0.6s 0.1s forwards;
+    }
+
+    .preloader-logo svg {
+      width: 54px;
+      height: auto;
+      color: var(--ink);
+    }
+
+    .preloader-logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+    }
+
+    .preloader-logo-text strong {
+      font-weight: 700;
     }
 
     .preloader-bar {
@@ -1568,32 +1585,16 @@
       transform: translateY(-2px);
     }
 
-    .nav-logo-box {
-      width: 36px;
-      height: 36px;
-      border: 2px solid var(--ink);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .nav-logo:hover .nav-logo-box {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .nav-logo:hover .nav-logo-box span {
-      color: #fff;
-    }
-
-    .nav-logo-box span {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
+    .nav-logo-svg {
+      width: 30px;
+      height: auto;
       color: var(--ink);
-      line-height: 1;
-      transition: color 0.2s;
+      transition: color var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .nav-logo:hover .nav-logo-svg {
+      color: var(--accent);
     }
 
     .nav-logo-text {
@@ -1603,19 +1604,17 @@
     }
 
     .nav-logo-name {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.02em;
       color: var(--ink);
-      text-transform: uppercase;
     }
 
     .nav-logo-role {
-      font-size: 0.58rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
       color: var(--muted);
-      text-transform: uppercase;
     }
 
     .hero-mark {
@@ -1625,21 +1624,11 @@
       margin-bottom: 2.5rem;
     }
 
-    .hero-mark-box {
-      width: 56px;
-      height: 56px;
-      border: 2.5px solid var(--ink);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-mark-box span {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
+    .hero-mark-svg {
+      width: 52px;
+      height: auto;
       color: var(--ink);
-      line-height: 1;
+      flex-shrink: 0;
     }
 
     .hero-mark-text {
@@ -1649,19 +1638,17 @@
     }
 
     .hero-mark-name {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.02em;
       color: var(--ink);
-      text-transform: uppercase;
     }
 
     .hero-mark-role {
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
       color: var(--muted);
-      text-transform: uppercase;
     }
 
     /* ── SCROLL TO TOP ── */
@@ -2111,7 +2098,12 @@
 
   <!-- PRELOADER -->
   <div id="preloader" aria-hidden="true">
-    <div class="preloader-logo">ASH.</div>
+    <div class="preloader-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 95">
+        <path fill-rule="evenodd" fill="currentColor" d="M2,92 L50,3 L98,92 Z  M14,92 L50,3 L22,92 Z  M34,92 L50,3 L66,92 Z  M78,92 L50,3 L86,92 Z  M39,62 L61,62 L63,73 L37,73 Z"/>
+      </svg>
+      <span class="preloader-logo-text"><strong>Ashwin</strong> builds</span>
+    </div>
     <div class="preloader-bar"></div>
   </div>
 
@@ -2121,10 +2113,12 @@
   <!-- NAV -->
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <a href="#hero" class="nav-logo">
-      <div class="nav-logo-box"><span>A</span></div>
+      <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 95" aria-hidden="true">
+        <path fill-rule="evenodd" fill="currentColor" d="M2,92 L50,3 L98,92 Z  M14,92 L50,3 L22,92 Z  M34,92 L50,3 L66,92 Z  M78,92 L50,3 L86,92 Z  M39,62 L61,62 L63,73 L37,73 Z"/>
+      </svg>
       <div class="nav-logo-text">
-        <span class="nav-logo-name">ASHWIN</span>
-        <span class="nav-logo-role">Developer</span>
+        <span class="nav-logo-name">Ashwin</span>
+        <span class="nav-logo-role">builds</span>
       </div>
     </a>
     <ul class="nav-links">
@@ -2190,13 +2184,15 @@
       <div class="code-editor-reflection"></div>
     </div>
     <div class="hero-mark">
-      <div class="hero-mark-box"><span>A</span></div>
+      <svg class="hero-mark-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 95" aria-hidden="true">
+        <path fill-rule="evenodd" fill="currentColor" d="M2,92 L50,3 L98,92 Z  M14,92 L50,3 L22,92 Z  M34,92 L50,3 L66,92 Z  M78,92 L50,3 L86,92 Z  M39,62 L61,62 L63,73 L37,73 Z"/>
+      </svg>
       <div class="hero-mark-text">
-        <span class="hero-mark-name">ASHWIN</span>
-        <span class="hero-mark-role">Developer</span>
+        <span class="hero-mark-name">Ashwin</span>
+        <span class="hero-mark-role">builds</span>
       </div>
     </div>
-    <p class="hero-tag">Developer &nbsp;·&nbsp; Builder &nbsp;·&nbsp; Creator</p>
+    <p class="hero-tag">Builds &nbsp;·&nbsp; Builder &nbsp;·&nbsp; Creator</p>
     <h1 class="hero-name" id="hero-name">Ashwin</h1>
     <div class="hero-bottom">
       <p class="hero-desc">
